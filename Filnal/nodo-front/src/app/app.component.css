@@ -1,0 +1,8 @@
+html {
+    height: max-content;
+}
+
+body {
+    height: max-content;
+    position: relative !important;
+}
