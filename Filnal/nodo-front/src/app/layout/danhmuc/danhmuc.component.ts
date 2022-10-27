@@ -87,7 +87,7 @@ export class DanhmucComponent implements OnInit {
     ma: [''],
     nhom: [''],
     thuTu: [''],
-    trangThai: [''],
+    trangThai: [1],
     nguoiCapNhat: [{
       id: 1,
       ten: 'Kiên',
@@ -111,7 +111,7 @@ export class DanhmucComponent implements OnInit {
   formFind = this.fb.group({
     ten: [],
     ma: [],
-    trangThai: []
+    trangThai: [1]
   })
   find() {
     console.log(this.formFind.value)

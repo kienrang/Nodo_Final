@@ -16,7 +16,7 @@ export class LoaidanhmucComponent implements OnInit {
   page: number = 1;
   count: number = 0;
   tableSize: number = 5;
-  tableSizes: any = [3, 6, 9, 12];
+  // tableSizes: any = [3, 6, 9, 12];
 
 
   onTableDataChange(event: any) {
@@ -30,6 +30,7 @@ export class LoaidanhmucComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.ck = false;
     this.getList();
   }
 
@@ -94,8 +95,14 @@ export class LoaidanhmucComponent implements OnInit {
 
   clickRowTable(item: any) {
     this.listDM = item.listDM;
+    this.ck = true;
   }
 
+  ck: any;
+
+  close() {
+    this.ck = false;
+  }
   formFind = this.fb.group({
     ten: [],
     ma: [],
