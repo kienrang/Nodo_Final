@@ -50,26 +50,25 @@ public class LoaiDanhMucServiceImpl implements LoaiDanhMucService {
 
     @Override
     public List<LoaiDanhMuc> findLoaiDanhMuc(FindRequet requet) {
-        if (requet == null) {
+        if (requet.getTrangThai() == null && requet.getMa() == null && requet.getTen() == null) {
             return this.getAll();
-        } else {
-            if (requet.getTen() == null) {
-                return this.loaiDanhMucRepository.findLoaiDanhMucEntityByMaAndTrangThai(requet.getTrangThai(), requet.getMa());
-            }
-            if (requet.getMa() == null) {
-                return this.loaiDanhMucRepository.findLoaiDanhMucEntityByTenAndTrangThai(requet.getTen(), requet.getTrangThai());
-            }
-            if (requet.getTrangThai() == null) {
-                return this.loaiDanhMucRepository.findLoaiDanhMucEntityByTenAndMa(requet.getTen(), requet.getMa());
-            }
-            if (requet.getTen() == null && requet.getTrangThai() == null) {
-                return this.loaiDanhMucRepository.findLoaiDanhMucEntityByMa(requet.getMa());
-            }
-            if (requet.getTrangThai() == null && requet.getMa() == null) {
-                return this.loaiDanhMucRepository.findLoaiDanhMucEntityByTen(requet.getTen());
-            }
-            if (requet.getTen() == null && requet.getMa() == null) {
+        }else {
+            if(requet.getTen() == null && requet.getMa() == null) {
                 return this.loaiDanhMucRepository.findLoaiDanhMucMucEntityByTrangThai(requet.getTrangThai());
+            }else if(requet.getTen() == null && requet.getTrangThai() == null) {
+                return this.loaiDanhMucRepository.findLoaiDanhMucEntityByMa(requet.getMa());
+            }else if(requet.getMa() == null && requet.getTrangThai() == null) {
+                return  this.loaiDanhMucRepository.findLoaiDanhMucEntityByTen(requet.getTen());
+            }else {
+                if (requet.getTen() == null) {
+                    return this.loaiDanhMucRepository.findLoaiDanhMucEntityByMaAndTrangThai(requet.getTrangThai(), requet.getMa());
+                }
+                if (requet.getMa() == null) {
+                    return this.loaiDanhMucRepository.findLoaiDanhMucEntityByTenAndTrangThai(requet.getTen(), requet.getTrangThai());
+                }
+                if (requet.getTrangThai() == null) {
+                    return this.loaiDanhMucRepository.findLoaiDanhMucEntityByTenAndMa(requet.getTen(), requet.getMa());
+                }
             }
         }
         return this.loaiDanhMucRepository.findLoaiDanhMucEntityByTenAndMaAndTrangThai(requet.getTen(), requet.getTrangThai(), requet.getMa());

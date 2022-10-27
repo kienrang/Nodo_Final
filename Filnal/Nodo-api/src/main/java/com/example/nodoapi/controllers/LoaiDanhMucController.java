@@ -32,7 +32,7 @@ public class LoaiDanhMucController {
 
     @PostMapping("find")
     public LoaiDanhMucResponse find(@RequestBody FindRequet requet){
-        System.out.println(requet.toString());
+        System.out.println(requet);
         List<LoaiDanhMuc> list = this.loaiDanhMucService.findLoaiDanhMuc(requet);
         return new LoaiDanhMucResponse(LoaiDanhMucMapper.toListDTO(list));
     }
